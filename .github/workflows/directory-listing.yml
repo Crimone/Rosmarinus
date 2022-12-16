@@ -14,11 +14,9 @@ jobs:
         with:
           FOLDER: .    #directory to generate index
           
-      - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@v4.4.1
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
         with:
-          branch: main
-          folder: .
-          force: true
-          clean: true
-          ssh-key: ${{ secrets.DEPLOY_KEY }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: main
+          publish_dir: .
