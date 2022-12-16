@@ -15,7 +15,7 @@ jobs:
           FOLDER: .    #directory to generate index
           
       - name: Deploy to Pages
-        uses: JamesIves/github-pages-deploy-action@v4.4.1
+        uses: JamesIves/github-pages-deploy-action@4.1.3
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: main
