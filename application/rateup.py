@@ -12,7 +12,7 @@ content = 1111
 while 1:
     try:
         #打开登录页面，url为要打开的地址
-        driver.get("http://scp-wiki-cn.wikidot.com/wanderers:conic-section-damn")
+        driver.get("http://scp-wiki-cn.wikidot.com/")
 
         #最大化浏览器
         driver.maximize_window()
