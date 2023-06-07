@@ -10,6 +10,44 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.keys import Keys
 
+
+import imaplib
+import email
+from email.header import decode_header
+
+# 你的Outlook邮箱的用户名和密码
+username = "a826944805@outlook.com"
+password = "H3llo2U1"
+
+def get_latest_mail():
+    # 创建IMAP4类与服务器进行通信
+    mail = imaplib.IMAP4_SSL("outlook.office365.com")
+
+    # 通过用户名和密码进行认证
+    mail.login(username, password)
+
+    # 选择邮箱
+    mail.select("inbox")
+
+    # 搜索邮件
+    result, data = mail.uid('search', None, '(HEADER Subject "Slack ")')
+
+    # 获取所有邮件ID
+    inbox_item_list = data[0].split()
+
+    # 获取最新的邮件ID
+    latest_email_id = inbox_item_list[-1]
+
+    result2, email_data = mail.uid('fetch', latest_email_id, '(BODY[HEADER])')
+    raw_email = email_data[0][1].decode("utf-8")
+    email_message = email.message_from_string(raw_email)
+
+    # 获取邮件主题
+    subject = decode_header(email_message['Subject'])[0][0]
+    if isinstance(subject, bytes):
+        subject = subject.decode()
+    return subject.rsplit("：", 1)[-1]
+
 def short_sleep(min_time=2, max_time=5):
     time.sleep(random.uniform(min_time, max_time))
 
@@ -180,8 +218,6 @@ def create_new_area(driver):
 
 def main():
 
-    email="a826944805@outlook.com"
-
     options = webdriver.EdgeOptions()
     options.add_argument("-inprivate")
 
@@ -195,7 +231,7 @@ def main():
     textbox = find_element_with_retry(driver,By.ID,"creator_signup_email")
     #点击登录
     textbox.click()
-    textbox.send_keys(email)
+    textbox.send_keys(username)
 
     #等待
     short_sleep()
@@ -203,7 +239,14 @@ def main():
     submit_button = find_element_with_retry(driver,By.ID,"submit_btn")
     submit_button.click()
 
-    input("请手动输入验证码，按下回车键继续执行...")
+    short_sleep()
+
+    commit_code = get_latest_mail().replace("-", "")
+
+    commit_textbox = find_element_with_retry(driver,By.CSS_SELECTOR,'.split_input_item input[aria-label="6 个中的第 1 位数字"]')
+    commit_textbox.send_keys(commit_code)
+
+    short_sleep()
 
     create_new_area(driver)
 
