@@ -10,6 +10,46 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.keys import Keys
 
+
+import imaplib
+import email
+from email.header import decode_header
+
+# 你的Outlook邮箱的用户名和密码
+username = "a826944805@outlook.com"
+password = "H3llo2U1"
+
+# 
+
+def get_latest_mail():
+    # 创建IMAP4类与服务器进行通信
+    mail = imaplib.IMAP4_SSL("outlook.office365.com")
+
+    # 通过用户名和密码进行认证
+    mail.login(username, password)
+
+    # 选择邮箱
+    mail.select("inbox")
+
+    # 搜索邮件
+    result, data = mail.uid('search', None, '(HEADER Subject "Slack ")')
+
+    # 获取所有邮件ID
+    inbox_item_list = data[0].split()
+
+    # 获取最新的邮件ID
+    latest_email_id = inbox_item_list[-1]
+
+    result2, email_data = mail.uid('fetch', latest_email_id, '(BODY[HEADER])')
+    raw_email = email_data[0][1].decode("utf-8")
+    email_message = email.message_from_string(raw_email)
+
+    # 获取邮件主题
+    subject = decode_header(email_message['Subject'])[0][0]
+    if isinstance(subject, bytes):
+        subject = subject.decode()
+    return subject.rsplit("：", 1)[-1]
+
 def short_sleep(min_time=2, max_time=5):
     time.sleep(random.uniform(min_time, max_time))
 
