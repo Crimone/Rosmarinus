@@ -10,6 +10,8 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.keys import Keys
 
+
+
 def short_sleep(min_time=2, max_time=5):
     time.sleep(random.uniform(min_time, max_time))
 
