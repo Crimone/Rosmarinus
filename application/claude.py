@@ -19,6 +19,8 @@ from email.header import decode_header
 username = "a826944805@outlook.com"
 password = "H3llo2U1"
 
+# 
+
 def get_latest_mail():
     # 创建IMAP4类与服务器进行通信
     mail = imaplib.IMAP4_SSL("outlook.office365.com")
