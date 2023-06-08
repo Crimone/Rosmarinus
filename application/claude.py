@@ -10,29 +10,40 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.keys import Keys
 
-
-
 def short_sleep(min_time=2, max_time=5):
     time.sleep(random.uniform(min_time, max_time))
 
 def long_sleep(min_time=10, max_time=15):
     time.sleep(random.uniform(min_time, max_time))
 
-def find_element_with_retry(driver, by, locator, max_wait=15, retry_interval=2):
+def find_element_with_retry(driver, by, locator, max_wait=10, retry_interval=2):
     wait = WebDriverWait(driver, max_wait)
-
-    while True:
+    retry_count=0
+    while retry_count < max_wait:
         try:
             element = wait.until(EC.presence_of_element_located((by, locator)))
             return element
         except:
             time.sleep(retry_interval)
+            retry_count = retry_count + 1
+
+def click_element_with_retry(driver, by, locator, max_wait=10, retry_interval=2):
+    wait = WebDriverWait(driver, max_wait)
+    retry_count=0
+    while retry_count < max_wait:
+        try:
+            element = wait.until(EC.presence_of_element_located((by, locator)))
+            element.click()
+            return
+        except:
+            time.sleep(retry_interval)
+            retry_count = retry_count + 1
 
 def create_new_area(driver):
     short_sleep()
 
-    create_button = find_element_with_retry(driver,By.CSS_SELECTOR,'button[data-qa="landing_view_confirm_button"]')
-    create_button.click()
+    click_element_with_retry(driver,By.CSS_SELECTOR,'button[data-qa="landing_view_confirm_button"]')
+    
 
     short_sleep()
 
@@ -42,23 +53,19 @@ def create_new_area(driver):
 
     short_sleep()
 
-    next_button = find_element_with_retry(driver,By.CSS_SELECTOR,'button[data-qa="setup-page-team-name-submit"]')
-    next_button.click()
+    click_element_with_retry(driver,By.CSS_SELECTOR,'button[data-qa="setup-page-team-name-submit"]')
 
     short_sleep()
 
-    next_button = find_element_with_retry(driver,By.CSS_SELECTOR,'button[data-qa="setup-page-profile-submit"]')
-    next_button.click()
+    click_element_with_retry(driver,By.CSS_SELECTOR,'button[data-qa="setup-page-profile-submit"]')
 
     short_sleep()
 
-    skip_button = find_element_with_retry(driver,By.CLASS_NAME,"c-link--button.p-setup_page__content_secondary_link.no_wrap.margin_left_0.margin_top_50")
-    skip_button.click()
+    click_element_with_retry(driver,By.CLASS_NAME,"c-link--button.p-setup_page__content_secondary_link.no_wrap.margin_left_0.margin_top_50")
 
     short_sleep()
 
-    confirm_button=find_element_with_retry(driver,By.CLASS_NAME,"c-button.c-button--danger.c-button--medium")
-    confirm_button.click()
+    click_element_with_retry(driver,By.CLASS_NAME,"c-button.c-button--danger.c-button--medium")
 
     short_sleep()
 
@@ -69,40 +76,36 @@ def create_new_area(driver):
 
     short_sleep()
 
-    next_button = find_element_with_retry(driver,By.CSS_SELECTOR,'button[data-qa="step-channels-footer-next"]')
-    next_button.click()
+    click_element_with_retry(driver,By.CSS_SELECTOR,'button[data-qa="step-channels-footer-next"]')
 
 
     short_sleep()
 
-    confirm_button = find_element_with_retry(driver,By.CSS_SELECTOR,'button[data-qa="setup_flow_tada_coachmark_cta"]')
-    confirm_button.click()
+    click_element_with_retry(driver,By.CSS_SELECTOR,'button[data-qa="setup_flow_tada_coachmark_cta"]')
 
     short_sleep()
 
-    browse_slack_menu= find_element_with_retry(driver,By.CLASS_NAME,"nudge_left_1.p-channel_sidebar__section_heading_more_label")
-    browse_slack_menu.click()
+    click_element_with_retry(driver,By.CLASS_NAME,"nudge_left_1.p-channel_sidebar__section_heading_more_label")
 
     short_sleep()
 
-    slack_connect_label=find_element_with_retry(driver,By.XPATH,"//div[text()='Slack Connect']")
-    slack_connect_label.click()
+    click_element_with_retry(driver,By.XPATH,"//div[text()='Slack Connect']")
 
     short_sleep()
 
-    find_element_with_retry(driver,By.CSS_SELECTOR,'button[data-qa="sk_close_modal_button"]').click()
+    click_element_with_retry(driver,By.CSS_SELECTOR,'button[data-qa="sk_close_modal_button"]')
 
     short_sleep()
 
-    find_element_with_retry(driver,By.CSS_SELECTOR,'button[data-qa="slack_connect_landing_page__channel_cta"]').click()
+    click_element_with_retry(driver,By.CSS_SELECTOR,'button[data-qa="slack_connect_landing_page__channel_cta"]')
 
     short_sleep()
 
-    find_element_with_retry(driver,By.CSS_SELECTOR,'button[data-qa="trial_entry_point_modal_start_trial_button"]').click()
+    click_element_with_retry(driver,By.CSS_SELECTOR,'button[data-qa="trial_entry_point_modal_start_trial_button"]')
 
     short_sleep()
 
-    find_element_with_retry(driver,By.CSS_SELECTOR,'button[data-qa="modal_speed_bump_continue"]').click()
+    click_element_with_retry(driver,By.CSS_SELECTOR,'button[data-qa="modal_speed_bump_continue"]')
 
     short_sleep()
 
@@ -112,15 +115,15 @@ def create_new_area(driver):
     #此处必须long sleep，使用short sleep有概率报错。
     long_sleep()
 
-    find_element_with_retry(driver,By.CSS_SELECTOR,'button[data-qa="create-channel-next-button"]').click()
+    click_element_with_retry(driver,By.CSS_SELECTOR,'button[data-qa="create-channel-next-button"]')
 
     short_sleep()
 
-    find_element_with_retry(driver,By.CSS_SELECTOR,'button[data-qa="create-channel-next-button"]').click()
+    click_element_with_retry(driver,By.CSS_SELECTOR,'button[data-qa="create-channel-next-button"]')
 
     short_sleep()
 
-    find_element_with_retry(driver,By.CSS_SELECTOR,'button[data-qa="invite_to_workspace_skip_button"]').click()
+    click_element_with_retry(driver,By.CSS_SELECTOR,'button[data-qa="invite_to_workspace_skip_button"]')
 
     short_sleep()
 
@@ -131,7 +134,7 @@ def create_new_area(driver):
     #必须long_sleep
     long_sleep()
 
-    find_element_with_retry(driver,By.CSS_SELECTOR,'button[data-qa="oauth_submit_button"]').click()
+    click_element_with_retry(driver,By.CSS_SELECTOR,'button[data-qa="oauth_submit_button"]')
 
     short_sleep()
 
@@ -139,50 +142,45 @@ def create_new_area(driver):
 
     long_sleep()
 
-    find_element_with_retry(driver,By.CSS_SELECTOR,'button[data-qa="texty_mention_button"]').click()
+    click_element_with_retry(driver,By.CSS_SELECTOR,'button[data-qa="texty_mention_button"]')
 
     short_sleep()
 
-    claude_label=find_element_with_retry(driver,By.CSS_SELECTOR,'span[data-qa="member_name__app"]')
-    claude_label.click()
+    click_element_with_retry(driver,By.CSS_SELECTOR,'span[data-qa="member_name__app"]')
 
     short_sleep()
 
-    find_element_with_retry(driver,By.CSS_SELECTOR,'button[data-qa="texty_send_button"]').click()
+    click_element_with_retry(driver,By.CSS_SELECTOR,'button[data-qa="texty_send_button"]')
 
     short_sleep()
 
-    find_element_with_retry(driver,By.CSS_SELECTOR,'button[data-qa="at_mention_invite_warning__invite_button"]').click()
+    click_element_with_retry(driver,By.CSS_SELECTOR,'button[data-qa="at_mention_invite_warning__invite_button"]')
 
     short_sleep()
 
-    find_element_with_retry(driver,By.CSS_SELECTOR,'button[data-qa="texty_mention_button"]').click()
+    click_element_with_retry(driver,By.CSS_SELECTOR,'button[data-qa="texty_mention_button"]')
 
     short_sleep()
 
-    claude_label=find_element_with_retry(driver,By.CSS_SELECTOR,'span[data-qa="member_name__app"]')
-    claude_label.click()
+    click_element_with_retry(driver,By.CSS_SELECTOR,'span[data-qa="member_name__app"]')
 
     short_sleep()
 
-    find_element_with_retry(driver,By.CSS_SELECTOR,'button[data-qa="texty_send_button"]').click()
+    click_element_with_retry(driver,By.CSS_SELECTOR,'button[data-qa="texty_send_button"]')
 
     short_sleep()
 
-    agree_label=find_element_with_retry(driver,By.XPATH,"//span[text()='Agree']")
-    agree_label.click()
+    click_element_with_retry(driver,By.XPATH,"//span[text()='Agree']")
 
     short_sleep()
 
-    find_element_with_retry(driver,By.CSS_SELECTOR,'button[data-qa="dialog_go"]').click()
+    click_element_with_retry(driver,By.CSS_SELECTOR,'button[data-qa="dialog_go"]')
 
     long_sleep()
 
     return
 
 def main():
-
-    email="a826944805@outlook.com"
 
     options = webdriver.EdgeOptions()
     options.add_argument("-inprivate")
@@ -197,15 +195,21 @@ def main():
     textbox = find_element_with_retry(driver,By.ID,"creator_signup_email")
     #点击登录
     textbox.click()
-    textbox.send_keys(email)
+    textbox.send_keys(username)
 
     #等待
     short_sleep()
 
-    submit_button = find_element_with_retry(driver,By.ID,"submit_btn")
-    submit_button.click()
+    click_element_with_retry(driver,By.ID,"submit_btn")
 
-    input("请手动输入验证码，按下回车键继续执行...")
+    short_sleep()
+
+    commit_code = get_latest_mail().replace("-", "")
+
+    commit_textbox = find_element_with_retry(driver,By.CSS_SELECTOR,'.split_input_item input[aria-label="6 个中的第 1 位数字"]')
+    commit_textbox.send_keys(commit_code)
+
+    short_sleep()
 
     create_new_area(driver)
 
