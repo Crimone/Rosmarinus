@@ -10,7 +10,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.keys import Keys
 
-
+import string
 import imaplib
 import email
 from email.header import decode_header
@@ -83,13 +83,16 @@ def create_new_area(driver):
     short_sleep()
 
     click_element_with_retry(driver,By.CSS_SELECTOR,'button[data-qa="landing_view_confirm_button"]')
-    
 
     short_sleep()
 
     textbox = find_element_with_retry(driver,By.ID,"setup-page-team-name")
+    if textbox == None:
+        if find_element_with_retry(driver,By.CSS_SELECTOR,'span.c-alert__message[data-qa-alert-message="true"]') != None:
+            time.sleep(1800)
+            return
     textbox.send_keys(Keys.BACKSPACE + Keys.BACKSPACE + Keys.BACKSPACE + Keys.BACKSPACE)
-    textbox.send_keys(datetime.now().strftime("%Y-%m-%d_%H:%M:%S"))
+    textbox.send_keys(random.choice(string.ascii_uppercase) + datetime.now().strftime("%Y-%m-%d_%H:%M:%S"))
 
     short_sleep()
 
