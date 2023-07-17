@@ -11,7 +11,7 @@ from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.keys import Keys
 
 import re
-import bisect
+import json
 
 
 def short_sleep(min_time=2, max_time=5):
@@ -20,7 +20,7 @@ def short_sleep(min_time=2, max_time=5):
 def long_sleep(min_time=10, max_time=15):
     time.sleep(random.uniform(min_time, max_time))
 
-def find_element_with_retry(driver, by, locator, max_wait=10, retry_interval=2):
+def find_ele_ment_with_retry(driver, by, locator, max_wait=10, retry_interval=2):
     wait = WebDriverWait(driver, max_wait)
     retry_count=0
     while retry_count < max_wait:
@@ -56,7 +56,7 @@ def main():
     data = []
     count = 0
 
-    search_string="ATID"
+    search_string="SNIS"
 
     while(1):
 
@@ -87,14 +87,20 @@ def main():
             # 去除空白字符
             em_content = [re.sub(r'[\u200b-\u200f\u202a-\u202e]', '', content.strip().strip("-")) for content in em_content]
 
+            if em_content == []:
+                continue
+
 
             data.append({
-                'title': f"{search_string}-{em_content[0]}-C",
+                'number': re.match(r'\d+', em_content[0].strip()).group(0) if re.match(r'\d+', em_content[0].strip()) else '999999',
+                'title': element.get_attribute('title'),
                 'href': element.get_attribute('href')
             })
 
-        data = sorted(data, key=lambda item: int(re.match(r'\d+', item['title'].split('-')[1]).group(0)))
-        data
+        data = sorted(data, key=lambda item: int(item['number']))
+        with open(f'application/{search_string}_search_result.json', 'w') as json_file:
+            json.dump(data, json_file,indent=4)
+        
 
         
             
