@@ -246,12 +246,12 @@ def main():
     click_element_with_retry(driver,By.ID,"submit_btn")
 
     short_sleep()
-
+    '''
     commit_code = get_latest_mail().replace("-", "")
 
     commit_textbox = find_element_with_retry(driver,By.CSS_SELECTOR,'.split_input_item input[aria-label="6 个中的第 1 位数字"]')
     commit_textbox.send_keys(commit_code)
-
+    '''
     short_sleep()
 
     create_new_area(driver)
