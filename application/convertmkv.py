@@ -88,7 +88,7 @@ def execute_mkvmerge_command(input_file_path, output_file_name, aspect_ratio):
 
 # 主函数
 def main():
-    input_file_path = r"L:\Soulseek Downloads\Soulseek Shared Folder\久保田早紀 - Saki Kubota PREMIUM\DISC-8 - フェアウエル・コンサート (Original Remastered 2019)\久保田早紀 フェアウェル コンサート 1984 Saki Kubota Farewell Concert [VwXP16G06Os].mkv"  # 输入视频路径
+    input_file_path = r"L:\Soulseek Downloads\complete\somie\First Love -15th Anniversary Deluxe Edition-\2-01 Luv Live\A1_t00.mkv"  # 输入视频路径
     output_file_name = 'output_video.mkv'  # 输出视频路径
     avs_file_path = 'qtgmc.avs'  # AVS文件路径
     qtgmc_path = r"C:\Users\Crimone\Downloads\FFmpeg - QTGMC Easy v2022.12.27\FFmpeg - QTGMC Easy v2022.12.27"
