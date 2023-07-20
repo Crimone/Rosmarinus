@@ -35,7 +35,7 @@ def update_mkv_chapter_titles(mkv_file_path, txt_file_path):
     os.remove(temp_xml_file)
 
 # Example usage:
-path = r"K:\YUI\[EAC][111102] HOW CRAZY YOUR LOVE／YUI (wav+cue+log+iso)\DVD_VIDEO\converted_av1.mkv"
+path = r"J:\Live Video\NieR-Orchestra Concert 12018\NieR-Orchestra Concert 12018.mkv"
 
 txt = r"application\chapter.txt"
 
