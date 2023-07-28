@@ -51,9 +51,9 @@ def modify_avs_file(avs_file_path, input_path):
         file.write(modified_content)
 
 # 执行FFmpeg命令
-def execute_ffmpeg_command(input_path, output_path, dar_ratio):
+def execute_ffmpeg_command(qtgmc_path, input_path, output_path, dar_ratio):
     ffmpeg_cmd = rf'.\ffmpeg -i {input_path} -vf "setdar=dar={dar_ratio}" -c:v libsvtav1 -preset 5 -crf 23 "{output_path}"'
-    subprocess.run(ffmpeg_cmd, shell=True, check=True, cwd=r"C:\Users\Crimone\Downloads\FFmpeg - QTGMC Easy v2022.12.27\FFmpeg - QTGMC Easy v2022.12.27")
+    subprocess.run(ffmpeg_cmd, shell=True, check=True, cwd=qtgmc_path)
 
 def execute_mkvmerge_command(input_file_path, output_file_name, aspect_ratio):
     data = [
@@ -88,10 +88,10 @@ def execute_mkvmerge_command(input_file_path, output_file_name, aspect_ratio):
 
 # 主函数
 def main():
-    input_file_path = r"L:\Soulseek Downloads\complete\somie\First Love -15th Anniversary Deluxe Edition-\2-01 Luv Live\A1_t00.mkv"  # 输入视频路径
+    input_file_path = r"G:\Live Video\Fishmans - 記憶の増大\Kioku No Zoudai DVD 1\A1_t00 (1)-002 (2).mkv"  # 输入视频路径
     output_file_name = 'output_video.mkv'  # 输出视频路径
     avs_file_path = 'qtgmc.avs'  # AVS文件路径
-    qtgmc_path = r"C:\Users\Crimone\Downloads\FFmpeg - QTGMC Easy v2022.12.27\FFmpeg - QTGMC Easy v2022.12.27"
+    qtgmc_path = r"D:\FFmpeg - QTGMC Easy v2022.12.27"
 
     # 获取视频长宽比
     aspect_ratio = get_display_aspect_ratio(input_file_path)
@@ -100,9 +100,9 @@ def main():
     modify_avs_file(os.path.join(qtgmc_path, avs_file_path), input_file_path)
 
     # 执行FFmpeg命令
-    execute_ffmpeg_command(avs_file_path, os.path.join(os.path.dirname(input_file_path), output_file_name),aspect_ratio)
+    execute_ffmpeg_command(qtgmc_path, avs_file_path, os.path.join(os.path.dirname(input_file_path), output_file_name),aspect_ratio)
 
-    execute_mkvmerge_command(input_file_path, output_file_name, aspect_ratio)
+    #execute_mkvmerge_command(input_file_path, output_file_name, aspect_ratio)
 
 
 
