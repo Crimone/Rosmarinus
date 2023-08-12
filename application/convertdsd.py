@@ -45,7 +45,7 @@ def compress_dsf_files(path,delete_source):
 
         print(colored(f'Compressing {dsf_file} to .wv file',"green"))
         wavpack_cmd = rf'wavpack -h -m --import-id3 -r "{dsf_file}"'
-        subprocess.run(wavpack_cmd, shell=True, check=True)
+        subprocess.run(wavpack_cmd, shell=True, check=True, cwd=r"D:\foobar2000\encoders")
 
     print(colored(f'All compression is complete!',"green"))
 
@@ -75,3 +75,5 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+
