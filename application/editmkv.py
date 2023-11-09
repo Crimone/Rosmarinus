@@ -35,7 +35,7 @@ def update_mkv_chapter_titles(mkv_file_path, txt_file_path):
     os.remove(temp_xml_file)
 
 # Example usage:
-path = r"G:\Live Video\CHTE_0080\[SVTAV1]A1_t00.mkv"
+path = r"I:\视频\MyGO!!!!!「迷跡波」【Blu-ray付生産限定盤】\MyGO!!!!!「迷跡波」【Blu-ray付生産限定盤】_t00.mkv"
 
 txt = r"application\chapter.txt"
 

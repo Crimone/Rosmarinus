@@ -10,7 +10,7 @@
             "request": "launch",
             "program": "${file}",
             "console": "integratedTerminal",
-            "args": ["L:\\Soulseek Downloads"],
+            "args": ["I:\\Soulseek Downloads\\complete\\Nikolayio\\[C89] Diverse System (Feryquitous) — ZheleNaught {DVSP-0143} [CD-FLAC]", "ZheleNaught"],
             "justMyCode": true
         }
     ]
