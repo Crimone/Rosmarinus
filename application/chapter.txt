@@ -1,50 +1,23 @@
-1. OPENING
-2. The Curtain Rises
-3. Kiss me 愛してる
-4. The Middle Management〜女性中間管理職〜
-5. 都会っ子 純情
-6. MC
-7. わっきゃない(Z)
-8. 桃色スパークリング
-9. 大きな愛でもてなして
-10. 心の叫びを歌にしてみた
-11. MC
-12. 桜チラリ
-13. キャンパスライフ〜生まれて来てよかった〜
-14. 君は自転車 私は電車で帰宅
-15. Summer Wind
-16. VTR
-17. EVERYDAY YEAH!片想い
-18. 私立共学
-19. 僕らの輝き
-20. SHOCK!
-21. まっさらブルージーンズ
-22. MC
+﻿﻿Opening
+1. 名無声
+2. ティアドロップス
 [MC]
-23. 人生はSTEP!
-24. 夢幻クライマックス
-25. Crazy 完全な大人
-26. FOREVER LOVE
-27. 涙の色
-28. MC
-29. アダムとイブのジレンマ
-30. 悲しきヘブン(Single Version)
-31. 嵐を起こすんだ Exciting Fight!
-32. 情熱エクスタシー
-33. MC
-34. 超WONDERFUL!
-35. Danceでバコーン！
-36. 世界一HAPPYな女の子
-37. アイアンハート
-38. ファイナルスコール
-[ENCORE]
-39. Singing〜あの頃のように〜【ENCORE】
-40. MC【ENCORE】
-41. SHINES【ENCORE】
-42. MC【ENCORE】
-43. To Tomorrow【ENCORE】
-[W ENCORE]
-44. JUMP【W ENCORE】
-45. MC【W ENCORE】
-46. たどり着いた女戦士【W ENCORE】
-47. ENDING
+3. 影色舞
+4. 潜在表明
+5. 無路矢
+6. 二息歩行（Reloaded）
+[MC]
+7. Henceforth
+8. 猛独が襲う
+[MC]
+9. swim
+10. 迷星叫
+[MC]
+11. 音一会
+ENCORE::1. 無路矢
+[MC]
+[MC]
+ENCORE::2. 壱雫空
+[MC]
+ENCORE::3. 音一会
+Ending

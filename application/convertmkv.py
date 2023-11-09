@@ -120,7 +120,7 @@ def execute_mkvmerge_command(input_file_path, output_file_name, aspect_ratio):
 
 # 主函数
 def main():
-    input_file_path = check_base_name(r"E:\视频\Keiko Matsui - Light Above The Trees (2000)\A1_t00.mkv")  # 输入视频路径
+    input_file_path = check_base_name(r"E:\视频\SARAH_BRIGHTMAN_DVD\B1_t00.mkv")  # 输入视频路径
     output_file_name = '[CONVERTING]' + os.path.basename(input_file_path) # 输出视频路径
     avs_file_path = 'qtgmc.avs'  # AVS文件路径
     qtgmc_path = r"D:\FFmpeg - QTGMC Easy v2022.12.27"
